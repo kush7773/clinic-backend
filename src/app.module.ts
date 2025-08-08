@@ -12,12 +12,14 @@ import { User } from './users/user.entity'; // Import the new User entity
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      url: process.env.DATABASE_URL, // This is the important line for Render
+      ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false, // Required for Render connections
+      host: 'localhost', // Fallback for local development
       port: 3306,
       username: 'root',
       password: '',
       database: 'clinic_db',
-      entities: [Doctor, Appointment, User], // Add User to entities
+      entities: [Doctor, Appointment, User],
       synchronize: true,
     }),
     DoctorsModule,
