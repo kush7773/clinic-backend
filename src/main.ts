@@ -4,9 +4,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // More specific CORS configuration for production
+  // Specific CORS configuration for your live frontend
   app.enableCors({
-    origin: 'https://clinic-frontend-bay.vercel.app/', // <-- PASTE YOUR VERCEL URL HERE
+    origin: 'https://clinic-frontend-bay.vercel.app', // <-- PASTE YOUR VERCEL URL HERE
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
